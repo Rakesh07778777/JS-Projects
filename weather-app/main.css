@@ -1,0 +1,106 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bungee&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@400..900&family=Outfit:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Russo+One&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background: #111;
+     font-family: "Bebas Neue", sans-serif;
+}
+
+.card{
+    width: 90%;
+    max-width: 470px;
+    background: linear-gradient(135deg, #00feba, #5b548a);
+    margin: 100px auto 0;
+    padding: 3.5rem 3rem;
+    border-radius: 20px;
+    text-align: center;
+    color: #fff;
+}
+
+.search{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.search input{
+    border: none;
+    outline: none;
+    background: #ebfffc;
+    color:#555;
+    padding: 0.8rem 1.5rem;
+    height: 60px;
+    border-radius: 30px;
+    flex: 1;
+    margin-right: 1rem;
+    font-size: 1.2rem;
+}
+
+.search button{
+    border: none;
+    outline: none;
+    background: #ebfffc;
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search button img{
+    width: 16px;
+}
+
+.weather-icon{
+    width: 170px;
+    margin-top: 3rem;
+}
+
+.weather h1{
+    font-size: 6rem;
+    font-weight: 500;
+}
+
+.weather h2{
+    font-size: 2.5rem;
+    font-weight: 400;
+    margin-top: -10px;
+    letter-spacing: 3px;
+}
+
+.details{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.4rem;
+    margin-top: 3rem;
+}
+
+.col{
+    display: flex;
+    align-items: center;
+    text-align: left;
+}
+
+.col img{
+    width: 40px;
+    margin-right: 0.8rem;
+}
+
+.humidity, .wind{
+    font-size: 1.5rem;
+    margin-top: -6px;
+}
+
+.col p:nth-child(2){
+    letter-spacing: 3px;
+}
