@@ -42,10 +42,11 @@ async function checkWeather(cityName) {
 }
 
 
+
+
 button.addEventListener('click', () => {
     checkWeather(input.value);
 });
-
 
 
  
