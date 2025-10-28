@@ -41,7 +41,16 @@ async function checkWeather(cityName) {
   }
 }
 
-
+input.addEventListener('keydown', function(event) {
+  if (event.key === 'Enter') {
+    const city = input.value.trim();
+    if (city) {
+      checkWeather(city); // your function
+    } else {
+      alert("Please enter a city name");
+    }
+  }
+});
 
 
 button.addEventListener('click', () => {
