@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Calculator - Find Your Love Score</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 50px 40px;
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hearts-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.1;
+            overflow: hidden;
+        }
+
+        .heart-float {
+            position: absolute;
+            font-size: 30px;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(10deg); }
+        }
+
+        h1 {
+            text-align: center;
+            color: #667eea;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 1rem;
+        }
+
+        .input-section {
+            position: relative;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        label {
+            display: block;
+            color: #764ba2;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+        }
+
+        .heart-divider {
+            text-align: center;
+            font-size: 2rem;
+            margin: 20px 0;
+            color: #f093fb;
+        }
+
+        button {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+            margin-top: 30px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .result-section {
+            display: none;
+            text-align: center;
+        }
+
+        .loading-animation {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .heart-loader {
+            font-size: 4rem;
+            display: inline-block;
+            color: #f093fb;
+        }
+
+        .loading-text {
+            color: #667eea;
+            font-size: 1.2rem;
+            margin-top: 20px;
+            font-weight: 500;
+        }
+
+        .result-content {
+            padding: 30px 0;
+        }
+
+        .score-circle {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 30px auto;
+            position: relative;
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+        }
+
+        .score-inner {
+            width: 180px;
+            height: 180px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .score-number {
+            font-size: 4rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .score-label {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .couple-names {
+            font-size: 1.5rem;
+            color: #764ba2;
+            margin: 20px 0;
+            font-weight: 600;
+        }
+
+        .message {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.6;
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(102, 126, 234, 0.05);
+            border-radius: 15px;
+        }
+
+        .try-again {
+            background: linear-gradient(135deg, #f093fb 0%, #764ba2 100%);
+            margin-top: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 40px 25px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .score-circle {
+                width: 170px;
+                height: 170px;
+            }
+
+            .score-inner {
+                width: 150px;
+                height: 150px;
+            }
+
+            .score-number {
+                font-size: 3rem;
+            }
+        }
+
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .celebration-heart {
+            position: absolute;
+            font-size: 30px;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hearts-bg">
+            <div class="heart-float" style="left: 10%; top: 20%;">💕</div>
+            <div class="heart-float" style="left: 80%; top: 30%; animation-delay: 3s;">💖</div>
+            <div class="heart-float" style="left: 20%; top: 70%; animation-delay: 6s;">💗</div>
+            <div class="heart-float" style="left: 85%; top: 75%; animation-delay: 9s;">💝</div>
+        </div>
+
+        <div class="input-section" id="inputSection">
+            <h1>💘 Love Calculator</h1>
+            <p class="subtitle">Discover your love compatibility score</p>
+            
+            <div class="input-group">
+                <label for="name1">Your Name</label>
+                <input type="text" id="name1" placeholder="Enter your name" autocomplete="off">
+            </div>
+
+            <div class="heart-divider">❤️</div>
+
+            <div class="input-group">
+                <label for="name2">Their Name</label>
+                <input type="text" id="name2" placeholder="Enter their name" autocomplete="off">
+            </div>
+
+            <button onclick="calculateLove()">Calculate Love Score 💕</button>
+        </div>
+
+        <div class="loading-animation" id="loadingSection">
+            <div class="heart-loader" id="heartLoader">💖</div>
+            <div class="loading-text" id="loadingText">Calculating your love...</div>
+        </div>
+
+        <div class="result-section" id="resultSection">
+            <div class="result-content">
+                <h2 style="color: #667eea; margin-bottom: 10px;">Love Score</h2>
+                <div class="couple-names" id="coupleNames"></div>
+                
+                <div class="score-circle">
+                    <div class="score-inner">
+                        <div class="score-number" id="scoreNumber">0</div>
+                        <div class="score-label">% Match</div>
+                    </div>
+                </div>
+
+                <div class="message" id="message"></div>
+
+                <button class="try-again" onclick="resetCalculator()">Try Again 🔄</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="floating-hearts" id="floatingHearts"></div>
+
+    <script>
+        const scores = {};
+
+        function normalizeString(str) {
+            return str.toLowerCase().trim().replace(/\s+/g, '');
+        }
+
+        function generatePairKey(name1, name2) {
+            const n1 = normalizeString(name1);
+            const n2 = normalizeString(name2);
+            return [n1, n2].sort().join('|');
+        }
+
+        function calculateScore(name1, name2) {
+            const combined = name1 + name2;
+            let hash = 0;
+            for (let i = 0; i < combined.length; i++) {
+                hash = ((hash << 5) - hash) + combined.charCodeAt(i);
+                hash = hash & hash;
+            }
+            return Math.abs(hash % 101);
+        }
+
+        function getMessage(score) {
+            if (score >= 90) return "🔥 Absolutely perfect match! You two are soulmates destined to be together. The chemistry is off the charts!";
+            if (score >= 80) return "💕 Amazing compatibility! You share a deep connection and understanding. This relationship has incredible potential!";
+            if (score >= 70) return "💖 Great match! You complement each other beautifully. With effort and care, this could be something truly special.";
+            if (score >= 60) return "💗 Good compatibility! You have a solid foundation for a loving relationship. Communication will strengthen your bond.";
+            if (score >= 50) return "💝 Moderate match. Every relationship takes work, and you two can build something meaningful together with dedication.";
+            if (score >= 30) return "💌 Friendship potential is strong! Sometimes the best relationships start as great friendships.";
+            return "💫 Opposites attract! While the compatibility score is low, love can surprise us in unexpected ways.";
+        }
+
+        function createFloatingHearts() {
+            const container = document.getElementById('floatingHearts');
+            const hearts = ['💕', '💖', '💗', '💘', '💝', '❤️'];
+            
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'celebration-heart';
+                    heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                    heart.style.left = Math.random() * 100 + '%';
+                    heart.style.top = '100%';
+                    container.appendChild(heart);
+
+                    gsap.to(heart, {
+                        y: -window.innerHeight - 100,
+                        x: (Math.random() - 0.5) * 200,
+                        rotation: Math.random() * 360,
+                        opacity: 1,
+                        duration: 3 + Math.random() * 2,
+                        ease: 'power1.out',
+                        onComplete: () => heart.remove()
+                    });
+                }, i * 100);
+            }
+        }
+
+        function calculateLove() {
+            const name1 = document.getElementById('name1').value.trim();
+            const name2 = document.getElementById('name2').value.trim();
+
+            if (!name1 || !name2) {
+                alert('Please enter both names! 💕');
+                return;
+            }
+
+            const inputSection = document.getElementById('inputSection');
+            const loadingSection = document.getElementById('loadingSection');
+            const resultSection = document.getElementById('resultSection');
+
+            gsap.to(inputSection, {
+                opacity: 0,
+                scale: 0.9,
+                duration: 0.5,
+                onComplete: () => {
+                    inputSection.style.display = 'none';
+                    loadingSection.style.display = 'block';
+                    
+                    gsap.fromTo(loadingSection, 
+                        { opacity: 0, scale: 0.8 },
+                        { opacity: 1, scale: 1, duration: 0.5 }
+                    );
+
+                    const heartLoader = document.getElementById('heartLoader');
+                    const loadingTexts = [
+                        'Reading your hearts...',
+                        'Analyzing compatibility...',
+                        'Calculating chemistry...',
+                        'Almost there...'
+                    ];
+                    
+                    gsap.to(heartLoader, {
+                        scale: 1.3,
+                        rotation: 360,
+                        duration: 0.8,
+                        repeat: -1,
+                        yoyo: true,
+                        ease: 'power1.inOut'
+                    });
+
+                    let textIndex = 0;
+                    const textInterval = setInterval(() => {
+                        document.getElementById('loadingText').textContent = loadingTexts[textIndex];
+                        textIndex = (textIndex + 1) % loadingTexts.length;
+                    }, 800);
+
+                    setTimeout(() => {
+                        clearInterval(textInterval);
+                        showResult(name1, name2);
+                    }, 3500);
+                }
+            });
+        }
+
+        function showResult(name1, name2) {
+            const loadingSection = document.getElementById('loadingSection');
+            const resultSection = document.getElementById('resultSection');
+            
+            const pairKey = generatePairKey(name1, name2);
+            let score;
+            
+            if (scores[pairKey]) {
+                score = scores[pairKey];
+            } else {
+                score = calculateScore(normalizeString(name1), normalizeString(name2));
+                scores[pairKey] = score;
+            }
+
+            gsap.to(loadingSection, {
+                opacity: 0,
+                scale: 0.8,
+                duration: 0.5,
+                onComplete: () => {
+                    loadingSection.style.display = 'none';
+                    resultSection.style.display = 'block';
+
+                    document.getElementById('coupleNames').textContent = `${name1} 💕 ${name2}`;
+                    document.getElementById('message').textContent = getMessage(score);
+
+                    gsap.fromTo(resultSection,
+                        { opacity: 0, y: 30 },
+                        { opacity: 1, y: 0, duration: 0.8 }
+                    );
+
+                    gsap.fromTo('.score-circle',
+                        { scale: 0, rotation: -180 },
+                        { 
+                            scale: 1, 
+                            rotation: 0, 
+                            duration: 1, 
+                            ease: 'back.out(1.7)',
+                            delay: 0.3
+                        }
+                    );
+
+                    const scoreElement = document.getElementById('scoreNumber');
+                    gsap.to({ val: 0 }, {
+                        val: score,
+                        duration: 2,
+                        delay: 0.8,
+                        onUpdate: function() {
+                            scoreElement.textContent = Math.round(this.targets()[0].val);
+                        }
+                    });
+
+                    if (score >= 70) {
+                        setTimeout(createFloatingHearts, 1000);
+                    }
+                }
+            });
+        }
+
+        function resetCalculator() {
+            const resultSection = document.getElementById('resultSection');
+            const inputSection = document.getElementById('inputSection');
+
+            gsap.to(resultSection, {
+                opacity: 0,
+                scale: 0.9,
+                duration: 0.5,
+                onComplete: () => {
+                    resultSection.style.display = 'none';
+                    inputSection.style.display = 'block';
+                    
+                    document.getElementById('name1').value = '';
+                    document.getElementById('name2').value = '';
+
+                    gsap.fromTo(inputSection,
+                        { opacity: 0, scale: 0.9 },
+                        { opacity: 1, scale: 1, duration: 0.5 }
+                    );
+                }
+            });
+        }
+
+        document.getElementById('name1').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') calculateLove();
+        });
+
+        document.getElementById('name2').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') calculateLove();
+        });
+
+        gsap.from('.container', {
+            scale: 0.8,
+            opacity: 0,
+            duration: 0.8,
+            ease: 'back.out(1.7)'
+        });
+    </script>
+</body>
+</html>
