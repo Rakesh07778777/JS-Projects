@@ -78,6 +78,8 @@ console.log(result)
 console.log('original')
 console.log(nums)
 
+
+
 const newProduct = [
     {id: 1,   name: 't-shirt',  price: 1000,    discount : 5},
     {id: 2,   name: 'pant',  price: 500,    discount : 8},
@@ -88,13 +90,11 @@ const newProduct = [
 const totalPrice = newProduct
 .with(1 ,{...newProduct[1] , price : 700} )
 .toReversed()
+.filter(n => n.discount > 0)
 .map( n => {
-    if(n.discount > 0){
-
         const discounted = n.price - (n.price * n.discount) / 100
         return {name : n.name , discounted}
-    }
 } )
-.toSorted(a, b => a.price - b.price)
+.toSorted((a, b) => a.discounted - b.discounted)
 
 console.log(totalPrice)
