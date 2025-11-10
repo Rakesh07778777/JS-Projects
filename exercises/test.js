@@ -30,3 +30,31 @@
             if (score >= 30) return "💌 Friendship potential is strong! Sometimes the best relationships start as great friendships.";
             return "💫 Opposites attract! While the compatibility score is low, love can surprise us in unexpected ways.";
         }
+
+
+
+        function createFloatingHearts() {
+            const container = document.getElementById('floatingHearts');
+            const hearts = ['💕', '💖', '💗', '💘', '💝', '❤️'];
+            
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'celebration-heart';
+                    heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                    heart.style.left = Math.random() * 100 + '%';
+                    heart.style.top = '100%';
+                    container.appendChild(heart);
+
+                    gsap.to(heart, {
+                        y: -window.innerHeight - 100,
+                        x: (Math.random() - 0.5) * 200,
+                        rotation: Math.random() * 360,
+                        opacity: 1,
+                        duration: 3 + Math.random() * 2,
+                        ease: 'power1.out',
+                        onComplete: () => heart.remove()
+                    });
+                }, i * 100);
+            }
+        }
