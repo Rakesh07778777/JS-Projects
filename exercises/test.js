@@ -58,3 +58,64 @@
                 }, i * 100);
             }
         }
+
+
+
+
+
+        function calculateLove() {
+            const name1 = document.getElementById('name1').value.trim();
+            const name2 = document.getElementById('name2').value.trim();
+
+            if (!name1 || !name2) {
+                alert('Please enter both names! 💕');
+                return;
+            }
+
+            const inputSection = document.getElementById('inputSection');
+            const loadingSection = document.getElementById('loadingSection');
+            const resultSection = document.getElementById('resultSection');
+
+            gsap.to(inputSection, {
+                opacity: 0,
+                scale: 0.9,
+                duration: 0.5,
+                onComplete: () => {
+                    inputSection.style.display = 'none';
+                    loadingSection.style.display = 'block';
+                    
+                    gsap.fromTo(loadingSection, 
+                        { opacity: 0, scale: 0.8 },
+                        { opacity: 1, scale: 1, duration: 0.5 }
+                    );
+
+                    const heartLoader = document.getElementById('heartLoader');
+                    const loadingTexts = [
+                        'Reading your hearts...',
+                        'Analyzing compatibility...',
+                        'Calculating chemistry...',
+                        'Almost there...'
+                    ];
+                    
+                    gsap.to(heartLoader, {
+                        scale: 1.3,
+                        rotation: 360,
+                        duration: 0.8,
+                        repeat: -1,
+                        yoyo: true,
+                        ease: 'power1.inOut'
+                    });
+
+                    let textIndex = 0;
+                    const textInterval = setInterval(() => {
+                        document.getElementById('loadingText').textContent = loadingTexts[textIndex];
+                        textIndex = (textIndex + 1) % loadingTexts.length;
+                    }, 800);
+
+                    setTimeout(() => {
+                        clearInterval(textInterval);
+                        showResult(name1, name2);
+                    }, 3500);
+                }
+            });
+        }
