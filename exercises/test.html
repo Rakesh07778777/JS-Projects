@@ -326,64 +326,6 @@
        
 
 
-        function showResult(name1, name2) {
-            const loadingSection = document.getElementById('loadingSection');
-            const resultSection = document.getElementById('resultSection');
-            
-            const pairKey = generatePairKey(name1, name2);
-            let score;
-            
-            if (scores[pairKey]) {
-                score = scores[pairKey];
-            } else {
-                score = calculateScore(normalizeString(name1), normalizeString(name2));
-                scores[pairKey] = score;
-            }
-
-            gsap.to(loadingSection, {
-                opacity: 0,
-                scale: 0.8,
-                duration: 0.5,
-                onComplete: () => {
-                    loadingSection.style.display = 'none';
-                    resultSection.style.display = 'block';
-
-                    document.getElementById('coupleNames').textContent = `${name1} 💕 ${name2}`;
-                    document.getElementById('message').textContent = getMessage(score);
-
-                    gsap.fromTo(resultSection,
-                        { opacity: 0, y: 30 },
-                        { opacity: 1, y: 0, duration: 0.8 }
-                    );
-
-                    gsap.fromTo('.score-circle',
-                        { scale: 0, rotation: -180 },
-                        { 
-                            scale: 1, 
-                            rotation: 0, 
-                            duration: 1, 
-                            ease: 'back.out(1.7)',
-                            delay: 0.3
-                        }
-                    );
-
-                    const scoreElement = document.getElementById('scoreNumber');
-                    gsap.to({ val: 0 }, {
-                        val: score,
-                        duration: 2,
-                        delay: 0.8,
-                        onUpdate: function() {
-                            scoreElement.textContent = Math.round(this.targets()[0].val);
-                        }
-                    });
-
-                    if (score >= 70) {
-                        setTimeout(createFloatingHearts, 1000);
-                    }
-                }
-            });
-        }
-
         function resetCalculator() {
             const resultSection = document.getElementById('resultSection');
             const inputSection = document.getElementById('inputSection');
