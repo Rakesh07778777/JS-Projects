@@ -181,3 +181,29 @@
                 }
             });
         }
+
+
+
+
+        function resetCalculator() {
+            const resultSection = document.getElementById('resultSection');
+            const inputSection = document.getElementById('inputSection');
+
+            gsap.to(resultSection, {
+                opacity: 0,
+                scale: 0.9,
+                duration: 0.5,
+                onComplete: () => {
+                    resultSection.style.display = 'none';
+                    inputSection.style.display = 'block';
+                    
+                    document.getElementById('name1').value = '';
+                    document.getElementById('name2').value = '';
+
+                    gsap.fromTo(inputSection,
+                        { opacity: 0, scale: 0.9 },
+                        { opacity: 1, scale: 1, duration: 0.5 }
+                    );
+                }
+            });
+        }
