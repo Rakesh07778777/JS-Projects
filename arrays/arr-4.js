@@ -96,5 +96,35 @@ const totalPrice = newProduct
         return {name : n.name , discounted}
 } )
 .toSorted((a, b) => a.discounted - b.discounted)
-
 console.log(totalPrice)
+
+
+console.log('the game results')
+
+const leaderBoard = [
+    {name : 'Rakesh' ,  score : 96},
+    {name : 'Zippo' ,  score : 90},
+    {name : 'Aman' ,  score : 80},
+    {name : 'Megha' ,  score : 72},
+    {name : 'Risha' ,  score : 40},
+    {name : 'Ritish' ,  score : 30},
+]
+
+const finalResult = leaderBoard
+.with(1 , {...leaderBoard[1] , score : 92})
+.map((points) => ({
+    // if(points.score > 40){
+    //     return{name : points.name , points: points.score , status : 'pass'}
+    // }else{
+    //     return{name : points.name , points: points.score , status : 'fail'}
+    // }   
+    
+    //instead of if else also we can use ternary Operator -->
+    name: points.name,
+    score: points.score,
+    status : points.score > 40 ? 'pass' : 'fail'
+}))
+.toSorted((a, b) => b.points - a.points)
+.toReversed()
+
+console.log(finalResult)
