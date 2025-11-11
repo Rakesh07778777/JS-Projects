@@ -128,3 +128,34 @@ const finalResult = leaderBoard
 .toReversed()
 
 console.log(finalResult)
+
+
+//Destructring array
+
+const alphabets = ['A' , 'B', 'C', 'D', 'E', 'F']
+const numbers = [1, 2, 3, 4, 5, 6]
+
+const [x , , z , ...rest] = newProduct
+// if we want that ignored the 'B' then we can do that by using --
+//[x , , z]
+//we just need to empty which part we want to skip 
+
+// spread Operator will do --> it will take the rest of elements and access it
+// console.log(x)
+// console.log(z)
+// console.log(rest)
+
+const newArray = [...alphabets , ...numbers]
+
+console.log(newArray)
+
+
+function sumAndMultiply(c , d){
+    return [c + d , c*d , c / d]
+}
+
+const [sum , multiply , division = 'No division'] = sumAndMultiply( 4, 6)
+//'No division' is the default value.
+console.log(sum)
+console.log(multiply)
+console.log(division)
