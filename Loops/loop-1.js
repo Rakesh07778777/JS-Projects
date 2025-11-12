@@ -29,5 +29,15 @@ btn.addEventListener('click' , () => {
     const selectedNums = document.selectForm.musicTypes
     console.log(`Your have Selected ${countSelected(selectedNums)}`)
 })
-//while and do while loops
 
+
+//while and do while loops
+//Waiting for user input (simulation)
+console.log('While loops')
+let userInput = ''
+while(userInput !== 'exit'){
+    userInput = prompt('Type something or Type exit to stop')
+    console.log('You typed:' , userInput)
+}
+
+// 
