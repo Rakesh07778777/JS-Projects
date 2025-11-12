@@ -13,22 +13,21 @@ for(let sum = arr.reduce((a, b) => a + b, 0); sum > 0 ; sum--) {
 }
 */
 //Working with html
-function countSelected(selectObject) {
-  let numberSelected = 0;
-  for (let i = 0; i < selectObject.options.length; i++) {
-    if (selectObject.options[i].selected) {
-      numberSelected++;
+function countSelected(selectSubject) {
+    let numberSelected = 0
+    for(let i = 0 ; i < selectSubject.options.length; i++){
+        if(selectSubject.options[i].selected){
+            numberSelected ++
+        }
     }
-  }
-  return numberSelected;
+
+    return numberSelected
 }
 
-const btn = document.getElementById("btn");
-
-btn.addEventListener("click", () => {
-  const musicTypes = document.selectForm.musicTypes;
-  console.log(`You have selected ${countSelected(musicTypes)} option(s).`);
-});
-
+const btn = document.getElementById('btn')
+btn.addEventListener('click' , () => {
+    const selectedNums = document.selectForm.musicTypes
+    console.log(`Your have Selected ${countSelected(selectedNums)}`)
+})
 //while and do while loops
 
