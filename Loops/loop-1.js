@@ -31,6 +31,7 @@ btn.addEventListener('click' , () => {
 })
 
 
+/*
 //while and do while loops
 //Waiting for user input (simulation)
 console.log('While loops')
@@ -39,5 +40,12 @@ while(userInput !== 'exit'){
     userInput = prompt('Type something or Type exit to stop')
     console.log('You typed:' , userInput)
 }
+    */
 
-// 
+// Example 2: Download progress simulation
+let downloaded = 0
+
+while(downloaded < 100){
+    downloaded += 10
+    console.log(`Downloading ${downloaded}`)
+}
