@@ -53,6 +53,8 @@ while(downloaded < 100){
 }
     */
 
+
+/*
 // do while loops
 
 let password 
@@ -62,3 +64,14 @@ do{
     password = parseInt(prompt('Enter your password'))
     console.log(`Password is:  ${password}`)
 } while(password !== correctPassword)
+ */
+
+//Math.random() -- it generates any random numbers the numbers will less than 1 and greater than 0
+//Math.floor(2.66) ---> 3
+//Math.floor(9.99) ---> 10
+//Math.floor(9.2) ---> 9
+//Math.floor(-9.2) ---> -10
+
+
+
+
