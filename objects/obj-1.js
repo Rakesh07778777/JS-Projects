@@ -111,3 +111,19 @@ const product = {
 for (const [key, value] of Object.entries(product)) {
   console.log(`${key.toUpperCase()}: ${value}`);
 }
+
+//Managing State (Used in React, Redux, or Any App Logic)
+//Objects are the base of app state management — always updated immutably.
+
+let states = {
+    user: {name :'Rakesh' , loginInfo : false},
+    theme: 'Light'
+}
+
+states = {
+    ...states,
+    user: {...states.user , loginInfo : true},
+    theme: 'Dark'
+}
+
+console.log(states)
