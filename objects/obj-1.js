@@ -95,3 +95,19 @@ function filterByProperty(arr , key , value){
 }
 
 console.log(filterByProperty(users, 'age', 22))
+
+
+//Object Conversion and Display (Used in Tables and UIs)
+
+console.log('Object Conversion and Display (Used in Tables and UIs)')
+
+const product = {
+  id: 201,
+  name: "MacBook Air",
+  price: 1200,
+  stock: 8
+};
+
+for (const [key, value] of Object.entries(product)) {
+  console.log(`${key.toUpperCase()}: ${value}`);
+}
