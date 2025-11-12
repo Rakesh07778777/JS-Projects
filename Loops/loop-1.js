@@ -42,6 +42,8 @@ while(userInput !== 'exit'){
 }
     */
 
+
+/*
 // Example 2: Download progress simulation
 let downloaded = 0
 
@@ -49,3 +51,14 @@ while(downloaded < 100){
     downloaded += 10
     console.log(`Downloading ${downloaded}`)
 }
+    */
+
+// do while loops
+
+let password 
+const correctPassword = 1234
+
+do{
+    password = parseInt(prompt('Enter your password'))
+    console.log(`Password is:  ${password}`)
+} while(password !== correctPassword)
