@@ -127,3 +127,20 @@ states = {
 }
 
 console.log(states)
+
+
+const people = [
+    { name : 'Rakesh' , city : 'Assam'},
+    { name : 'Aman' , city : 'Delhi'},
+    { name : 'Megha' , city : 'West bengal'},
+
+]
+
+const grouped = people.reduce((acc , current) => {
+    if(!acc[current.city]) acc[current.city] = []
+    acc[current.city].push(current.name)
+    return acc
+} , {})
+
+console.log(grouped)
+// console.log(people)
