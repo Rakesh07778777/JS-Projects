@@ -9,9 +9,31 @@
             background: #000;
             color: #fff;
         }
+        form{
+            height: 400px;
+            width: 500px;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
     </style>
 </head>
 <body>
+
+    <form name="selectForm">
+        <label for="musicTypes">
+            Choose some music types, then click the button bellow.
+        </label>
+        <select name="musicTypes" id="musicTypes" multiple>
+            <option selected>R&amp;B</option>
+                <option>Jazz</option>
+                <option>Blues</option>
+                <option>New Age</option>
+                <option>Classical</option>
+                <option>Opera</option>
+        </select>
+        <button type="button" id="btn">How many are selected</button>
+    </form>
 
 
     <script src="loop-1.js"></script>
