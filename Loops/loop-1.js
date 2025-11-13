@@ -98,6 +98,8 @@ do{
 
 
     */
+
+    /*
 // Triangle pattern ===> 
 
     for(let i = 5 ; i >= 1 ; i--){
@@ -108,3 +110,17 @@ do{
         console.log(pattern)
         // console.log(i)
     }
+
+    */
+
+    for (let i = 1 ; i <= 6 ; i++){
+        let stars = ''
+
+            if(i % 2 !== 0){
+                stars = '*'
+            } else{
+                stars += '*'
+            }
+            console.log(stars)
+    }
+
