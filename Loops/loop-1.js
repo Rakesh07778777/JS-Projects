@@ -82,6 +82,7 @@ do{
 } while(dice !== 6)
 console.log('You have got 🎲', dice)
 
+/*
 
 let connected = false 
 let attempts = 0
@@ -94,3 +95,16 @@ do{
 } while(!connected && attempts !== 5)
     if(connected) alert('You have connceted succesfully')
         else console.log('Failed to connect after attempts 5 times')
+
+
+    */
+// Triangle pattern ===> 
+
+    for(let i = 5 ; i >= 1 ; i--){
+        let pattern = ''
+        for(j = 1 ; j <= i; j++){
+            pattern += '*'
+        }
+        console.log(pattern)
+        // console.log(i)
+    }
