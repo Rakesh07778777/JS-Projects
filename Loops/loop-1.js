@@ -147,3 +147,17 @@ for(let i = 1; i <= rows ; i++){
     }
     console.log(line)
 }
+
+
+let row = 5
+for(let i = 5; i >= 1 ; i--){
+    let lines = ''
+    for(let s = 1; s <= row - i; s++){
+        lines += ' '
+    }
+
+    for(let star = 1; star <= (2 * i - 1); star++){
+        lines += '*'
+    }
+    console.log(lines)
+}
