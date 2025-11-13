@@ -12,6 +12,8 @@ for(let sum = arr.reduce((a, b) => a + b, 0); sum > 0 ; sum--) {
     console.log(sum)
 }
 */
+
+/*
 //Working with html
 function countSelected(selectSubject) {
     let numberSelected = 0
@@ -30,6 +32,7 @@ btn.addEventListener('click' , () => {
     console.log(`Your have Selected ${countSelected(selectedNums)}`)
 })
 
+*/
 
 /*
 //while and do while loops
@@ -54,9 +57,9 @@ while(downloaded < 100){
     */
 
 
-/*
-// do while loops
 
+// do while loops
+/*
 let password 
 const correctPassword = 1234
 
@@ -64,7 +67,7 @@ do{
     password = parseInt(prompt('Enter your password'))
     console.log(`Password is:  ${password}`)
 } while(password !== correctPassword)
- */
+*/
 
 //Math.random() -- it generates any random numbers the numbers will less than 1 and greater than 0
 //Math.floor(2.66) ---> 3
@@ -72,6 +75,9 @@ do{
 //Math.floor(9.2) ---> 9
 //Math.floor(-9.2) ---> -10
 
-
-
-
+let dice
+do{
+    dice = Math.floor(Math.random() * 6) + 1
+    console.log(dice)
+} while(dice !== 6)
+console.log('You have got 🎲', dice)
