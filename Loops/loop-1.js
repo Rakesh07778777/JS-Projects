@@ -119,8 +119,31 @@ do{
             if(i % 2 !== 0){
                 stars = '*'
             } else{
-                stars += '*'
+                stars = '**'
             }
             console.log(stars)
     }
 
+
+    console.log('another pattern')
+
+for ( let i = 1 ; i <= 4 ; i++){
+    pattern = ''
+    for(let j = 1; j <= i; j++){
+        pattern += j
+    }
+    console.log(pattern)
+}
+
+let rows = 5
+for(let i = 1; i <= rows ; i++){
+    let line = ''
+    for(let s = 1; s <= rows - i; s++){
+        line += ' '
+    }
+
+    for(let stars = 1; stars <= (2 * i - 1); stars++){
+        line += '*'
+    }
+    console.log(line)
+}
