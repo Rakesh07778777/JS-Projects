@@ -244,9 +244,13 @@ const originalNumber = 12345;
 const reversedResult = reverseNumber(originalNumber);
 console.log(`${originalNumber} reversed is ${reversedResult}`);
 
-function countNumber(counts){
+function countDigits(nums){
     let count = 0
-    for(let i = 0; i < counts ; i++){
-        
+    for( let i = 0; i < nums ; i++){
+        nums = Math.floor(nums / 10)
+        count++
     }
+    return count
 }
+
+console.log(countDigits(90876))
