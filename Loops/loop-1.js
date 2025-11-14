@@ -256,6 +256,8 @@ function countDigits(nums){
 console.log(countDigits(90876))
 */
 
+/*
+
 // 4. Sum of digits of a number.
 // Input: 743 → output: 14.
 function sumDigit(num){
@@ -268,3 +270,21 @@ function sumDigit(num){
     return sum
 }
 console.log(sumDigit(743))
+*/
+
+/*
+
+for(let n = 2; n <= 200 ; n++){
+    let isPrime = true;
+    for(let i = 2; i * i <= n; i++){
+        if(n % i === 0){
+            isPrime = false
+            break
+        }
+    }
+    if(isPrime){
+        console.log(n)
+    }
+}
+    */
+   
