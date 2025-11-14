@@ -113,51 +113,104 @@ do{
 
     */
 
-    for (let i = 1 ; i <= 6 ; i++){
-        let stars = ''
+//     for (let i = 1 ; i <= 6 ; i++){
+//         let stars = ''
 
-            if(i % 2 !== 0){
-                stars = '*'
-            } else{
-                stars = '**'
-            }
-            console.log(stars)
+//             if(i % 2 !== 0){
+//                 stars = '*'
+//             } else{
+//                 stars = '**'
+//             }
+//             console.log(stars)
+//     }
+
+
+//     console.log('another pattern')
+
+// for ( let i = 1 ; i <= 4 ; i++){
+//     pattern = ''
+//     for(let j = 1; j <= i; j++){
+//         pattern += j
+//     }
+//     console.log(pattern)
+// }
+
+
+
+// console.log('Triangle')
+
+
+// for(let i = 1; i <= 5 ; i++){
+//     let line = ''
+//     for(let s = 1; s <= 5 - i; s++){
+//         line += ' '
+//     }
+
+//     for(let stars = 1; stars <= (2 * i - 1); stars++){
+//         line += '*'
+
+//     }
+//     console.log(line)
+// }
+
+
+// let row = 5
+// for(let i = 5; i >= 1 ; i--){
+//     let lines = ''
+//     for(let s = 1; s <= row - i; s++){
+//         lines += ' '
+//     }
+
+//     for(let star = 1; star <= (2 * i - 1); star++){
+//         lines += '*'
+//     }
+//     console.log(lines)
+// }
+
+
+
+/*
+
+let rows = 5;
+
+for (let i = 1; i <= rows; i++) {
+  let line = "";
+
+  // 1. leading spaces
+  for (let space = 1; space <= rows - i; space++) {
+    line += " ";
+  }
+
+  // 2. stars + hollow logic
+  for (let star = 1; star <= (2 * i - 1); star++) {
+
+    // first row OR last row → print all stars
+    if (i === 1 || i === rows) {
+      line += "*";
     }
-
-
-    console.log('another pattern')
-
-for ( let i = 1 ; i <= 4 ; i++){
-    pattern = ''
-    for(let j = 1; j <= i; j++){
-        pattern += j
+    else {
+      // middle rows: print border stars only
+      if (star === 1 || star === (2 * i - 1)) {
+        line += "*";
+      } else {
+        line += " ";
+      }
     }
-    console.log(pattern)
+  }
+
+  console.log(line);
 }
 
-let rows = 5
-for(let i = 1; i <= rows ; i++){
-    let line = ''
-    for(let s = 1; s <= rows - i; s++){
-        line += ' '
-    }
-
-    for(let stars = 1; stars <= (2 * i - 1); stars++){
-        line += '*'
-    }
-    console.log(line)
-}
-
+*/
 
 let row = 5
-for(let i = 5; i >= 1 ; i--){
-    let lines = ''
-    for(let s = 1; s <= row - i; s++){
-        lines += ' '
+for(let i = 1 ; i <= row ; i++){
+    console.log(" ".repeat(row - i) + "*".repeat(2 * i - 1))
+}
+
+
+    for( let i = row - 1 ; i >= 1 ; i--){
+        console.log(" ".repeat(row - i) + "*".repeat(2 * i  - 1))
     }
 
-    for(let star = 1; star <= (2 * i - 1); star++){
-        lines += '*'
-    }
-    console.log(lines)
-}
+
