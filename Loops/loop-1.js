@@ -229,7 +229,7 @@ for(let i = 1 ; i <= 10 ; i++){
 }
 */
 
-
+/*
 function reverseNumber(num) {
   let reversedNum = 0;
   while (num > 0) {
@@ -254,3 +254,17 @@ function countDigits(nums){
 }
 
 console.log(countDigits(90876))
+*/
+
+// 4. Sum of digits of a number.
+// Input: 743 → output: 14.
+function sumDigit(num){
+    let sum = 0
+    for(let i = 0; i < num; i++){
+        const lastDisit = num  % 10
+        num = Math.floor(num / 10)
+        sum = sum + lastDisit
+    }
+    return sum
+}
+console.log(sumDigit(743))
