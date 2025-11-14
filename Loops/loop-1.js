@@ -203,6 +203,8 @@ for (let i = 1; i <= rows; i++) {
 
 */
 
+/*
+
 let row = 5
 for(let i = 1 ; i <= row ; i++){
     console.log(" ".repeat(row - i) + "*".repeat(2 * i - 1))
@@ -213,4 +215,38 @@ for(let i = 1 ; i <= row ; i++){
         console.log(" ".repeat(row - i) + "*".repeat(2 * i  - 1))
     }
 
+for(let i = 1 ; i <= 10 ; i++){
+     let line = ''
+    for(let j = 1 ; j <= 10 ; j++){
+        let value = i * j
+         let str = String(value)
+         let col =' '.repeat(4 - str.length)
+         line += col + str
+    }
 
+    console.log(line)
+
+}
+*/
+
+
+function reverseNumber(num) {
+  let reversedNum = 0;
+  while (num > 0) {
+    const lastDigit = num % 10; 
+    reversedNum = reversedNum * 10 + lastDigit;
+    num = Math.floor(num / 10); 
+  }
+  return reversedNum;
+}
+
+const originalNumber = 12345;
+const reversedResult = reverseNumber(originalNumber);
+console.log(`${originalNumber} reversed is ${reversedResult}`);
+
+function countNumber(counts){
+    let count = 0
+    for(let i = 0; i < counts ; i++){
+        
+    }
+}
